@@ -4,12 +4,11 @@ import {
   View,
   SafeAreaView,
   Pressable,
-  TextInput,
+  ScrollView,
 } from "react-native";
-import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { Ionicons, Octicons } from "@expo/vector-icons";
 import { useState } from "react";
-import DropDownPicker from "react-native-dropdown-picker";
-import { BlurView } from "expo-blur";
+import { StatusBar } from "expo-status-bar";
 
 // component imports
 import Header from "./components/Header";
@@ -46,49 +45,84 @@ export default function App() {
       {/* header */}
       <Header />
 
-      {/* hero text or title */}
-      <Text style={styles.title}>Let's Go Places...</Text>
+      <ScrollView>
+        {/* hero text or title */}
+        <Text style={styles.title}>Let's Go Places...</Text>
+        {/* source and destination selection */}
+        <Search />
 
-      {/* source and destination selection */}
-      <Search />
-
-      {/* search button and seat selection */}
-      <View style={styles.findRideContainer}>
-      <View style={{width: '55%', marginRight: 10,}}>
-          <DropDownPicker
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            placeholder="Select Seats"
-            dropDownDirection="BOTTOM"
+        {/* search button and seat selection */}
+        <View style={styles.findRideContainer}>
+          <Pressable
             style={{
-              backgroundColor: "#e3e3e3",
-              borderWidth: 0,
-              borderRadius: 5,
-   
+              flex: 1,
+              marginRight: 10,
+              borderRightWidth: 1,
+              borderColor: "#3D7A4E",
+              borderRadius: 0,
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
             }}
-            dropDownContainerStyle={{
-              backgroundColor: "#d3d3d3",
-              borderWidth: 0,
-              borderRadius: 5,
-            }}
-            textStyle={{ fontSize: 18, color: "#555" }}
-          />
-   </View>
+          >
+            <Text style={{ fontSize: 28, color: "#3d7a4e" }}>1</Text>
+            <Text style={{ fontSize: 22, color: "#3d7a4e" }}>Seat(s)</Text>
 
-        <Pressable
-          style={styles.button}
-          onPress={() => alert("No rides found")}
-        >
-          <Text style={{ fontSize: 20, color: "white" }}>Find Ride</Text>
+            <Ionicons name="ios-chevron-down" size={24} color="#555" />
+          </Pressable>
+
+          <Pressable
+            style={styles.button}
+            onPress={function () {
+              alert("No rides found");
+            }}
+          >
+            <Text style={{ fontSize: 20, color: "white" }}>Find Ride</Text>
+          </Pressable>
+        </View>
+
+        <Pressable style={{flexDirection: 'row', borderWidth: 2, borderColor: '#d3d3d3', borderRadius: 10, padding: 10, margin: 20}}>
+          <View>
+            <Ionicons name="md-location" size={24} />
+            <Octicons name="arrow-both" size={24} style={{transform: [{rotate: '90deg'}], marginVertical: 10 }}/>
+            <Ionicons name="md-location" size={24} />
+          </View>
+          <View style={{ flex: 1, justifyContent: 'space-between'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
+
+              <View>
+                <Text style={{color: '#d3d3d3'}}>Pickup point</Text>
+                <Text style={{fontSize: 20}}>Banjul</Text>
+              </View>
+
+              <View>
+                <View>
+                  <Text>17 July</Text>
+                </View>
+                <View>
+                  <Text>18:00</Text>
+                </View>
+              </View>
+
+            </View>
+
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
+              <View>
+                <Text style={{color: '#d3d3d3'}}>Drop point</Text>
+                <Text style={{fontSize: 20}}>Serrekunda</Text>
+              </View>
+              <View>
+                <Text>Price</Text>
+                <Text>$30.00</Text>
+              </View>
+            </View>
+          </View>
         </Pressable>
-      </View>
-
+      </ScrollView>
       {/* bottom navigation bar */}
       <BottomNav />
+
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
@@ -113,5 +147,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
+    paddingVertical: 10,
   },
 });

@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function BottomNav() {
     const [active, setActive] = useState('search');
   return (
-    <BlurView tint="light" intensity={15} style={styles.bottomNav}>
+    <BlurView tint="light" intensity={50} style={styles.bottomNav}>
       <Pressable style={styles.navItem} onPress={() => setActive('publish')}>
         <Ionicons name="add-circle-outline" size={30} color={active == 'publish' ? '#3d7a4e' : '#555'} />
         <Text style={[styles.navItemText, { color: active == 'publish' ? "#3D7A4E" : '#555' }]}>publish</Text>
