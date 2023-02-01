@@ -10,15 +10,14 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 
-// component imports
 import Search from "../components/Search";
 
-export default function HomeScreen({ navigation }) {
+export default function RidePublishScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* hero text or title */}
-        <Text style={styles.title}>Let's Go Places...</Text>
+        <Text style={styles.title}>Let's Pick People...</Text>
 
         {/* source and destination selection */}
         <Search />
@@ -45,9 +44,9 @@ export default function HomeScreen({ navigation }) {
 
           <Pressable
             style={styles.button}
-            onPress={() => navigation.navigate("Rides")}
+            onPress={() => alert("Can't Publish Ride!")}
           >
-            <Text style={{ fontSize: 20, color: "white" }}>Find Ride</Text>
+            <Text style={{ fontSize: 20, color: "white" }}>Publish Ride</Text>
           </Pressable>
         </View>
       </ScrollView>

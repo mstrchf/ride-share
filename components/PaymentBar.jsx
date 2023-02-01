@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { useState } from "react";
 
 export default function PaymentBar() {
+  const [seats, setSeats] = useState(1);
   return (
     <View style={{ flexDirection: "row", margin: 20 }}>
       <View
@@ -22,13 +24,25 @@ export default function PaymentBar() {
             paddingVertical: 10,
           }}
         >
-          <Pressable>
+          <Pressable
+            onPress={() => {
+              if (seats > 1) {
+                setSeats(seats - 1);
+              }
+            }}
+          >
             <AntDesign name="minuscircle" size={24} color="#3d7a4e" />
           </Pressable>
 
-          <Text style={{ fontSize: 28, marginHorizontal: 20 }}>1</Text>
+          <Text style={{ fontSize: 28, marginHorizontal: 20 }}>{seats}</Text>
 
-          <Pressable>
+          <Pressable
+            onPress={() => {
+              if (seats < 4) {
+                setSeats(seats + 1);
+              }
+            }}
+          >
             <AntDesign name="pluscircle" size={24} color="#3d7a4e" />
           </Pressable>
         </View>

@@ -5,41 +5,29 @@ import { StatusBar } from "expo-status-bar";
 // component imports
 import DetailCard from "../components/DetailCard";
 
-export default function AvailableRideScreen() {
+import data from "../data/data";
+
+export default function AvailableRideScreen({ navigation, route }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* hero text or title */}
         <Text style={styles.title}>Available Rides</Text>
-
-        <DetailCard
-          source="Brikama"
-          destination="Bakau"
-          date="17 Oct"
-          time="18:00"
-          price={5.99}
-        />
-        <DetailCard
-          source="Brikama"
-          destination="Bakau"
-          date="17 Oct"
-          time="18:00"
-          price={5.99}
-        />
-        <DetailCard
-          source="Brikama"
-          destination="Bakau"
-          date="17 Oct"
-          time="18:00"
-          price={5.99}
-        />
-        <DetailCard
-          source="Brikama"
-          destination="Bakau"
-          date="17 Oct"
-          time="18:00"
-          price={5.99}
-        />
+        {data.map((item) => {
+          return (
+            <DetailCard
+              navigation={navigation}
+              route={route}
+              itemId={item.id}
+              key={item.id}
+              source={item.source}
+              destination={item.destination}
+              date={item.date}
+              time={item.time}
+              price={item.price}
+            />
+          );
+        })}
       </ScrollView>
       <StatusBar style="auto" />
     </SafeAreaView>

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function DriverCard() {
+export default function DriverCard({navigation, driver}) {
   return (
     <Pressable
       style={{
@@ -13,6 +13,8 @@ export default function DriverCard() {
         borderColor: "#d3d3d3",
         borderRadius: 10,
       }}
+
+      onPress={() => navigation.navigate('Driver')}
     >
       <View
         style={{
@@ -27,10 +29,10 @@ export default function DriverCard() {
       </View>
 
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 18, marginBottom: 5 }}>Foday Sanyang</Text>
+        <Text style={{ fontSize: 18, marginBottom: 5 }}>{driver.name}</Text>
         <View>
           <Text style={{ color: "#d3d3d3" }}>license number</Text>
-          <Text style={{ fontSize: 17, color: "#555" }}>BJL-1458F</Text>
+          <Text style={{ fontSize: 17, color: "#555" }}>{driver.license}</Text>
         </View>
       </View>
 

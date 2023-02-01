@@ -8,21 +8,30 @@ import PaymentBar from '../components/PaymentBar'
 import Button from '../components/Button'
 import DetailCard from "../components/DetailCard";
 
-export default function RideDetailScreen() {
+import data from "../data/data";
+
+
+
+export default function RideDetailScreen({navigation, route}) {
+
+  const {id} = route.params;
+
+  console.log(id);
+  const ride = data.find(item => item.id === id)
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* hero text or title */}
         <Text style={styles.title}>Ride Detail</Text>
 
-        <DriverCard />
+        <DriverCard navigation={navigation} driver={ride.driver} />
 
         <DetailCard
-          source="Brikama"
-          destination="Bakau"
-          date="17 Oct"
-          time="18:00"
-          price={5.99}
+          source={ride.source}
+          destination={ride.destination}
+          date={ride.date}
+          time={ride.time}
+          price={ride.price}
         />
 
         <PaymentBar />
@@ -42,7 +51,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     color: "#555",
-    margin: 20,
+    marginHorizontal: 20,
+    marginTop: 15
   },
   findRideContainer: {
     margin: 20,

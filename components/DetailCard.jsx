@@ -1,7 +1,16 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
-export default function DetailCard({source, destination, date, time, price}) {
+export default function DetailCard({
+  source,
+  destination,
+  date,
+  time,
+  price,
+  navigation,
+  route,
+  itemId
+}) {
   return (
     <Pressable
       style={{
@@ -12,13 +21,18 @@ export default function DetailCard({source, destination, date, time, price}) {
         padding: 10,
         margin: 20,
       }}
+      onPress={() => {
+        if (route != null) {
+          navigation.navigate("Detail", {id: itemId});
+        }
+      }}
     >
       <View>
         <Ionicons name="md-location" size={24} color="#3d7a4e" />
         <FontAwesome
           name="long-arrow-down"
           size={24}
-          style={{  marginVertical: 15, marginLeft: 6, }}
+          style={{ marginVertical: 15, marginLeft: 6 }}
         />
         <Ionicons name="md-location" size={24} color="#3d7a4e" />
       </View>
@@ -37,19 +51,18 @@ export default function DetailCard({source, destination, date, time, price}) {
               borderRadius: 5,
               justifyContent: "center",
               alignItems: "center",
-              height: 42
+              height: 42,
             }}
           >
             <View
               style={{
                 backgroundColor: "#3d7a4e",
                 paddingHorizontal: 10,
-                height: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
+                height: "100%",
+                alignItems: "center",
+                justifyContent: "center",
                 borderTopStartRadius: 2,
                 borderBottomStartRadius: 2,
-
               }}
             >
               <Text style={{ color: "white", fontSize: 16 }}>{date}</Text>

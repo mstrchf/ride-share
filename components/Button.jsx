@@ -7,7 +7,7 @@ export default function Button() {
         {
             backgroundColor: '#3d7a4e',
             flex: 1,
-            padding: 20,
+            padding: 15,
             marginHorizontal: 20,
             borderRadius: 10,
             justifyContent: 'center',
@@ -15,7 +15,7 @@ export default function Button() {
     
         }
     }>
-      <Text style={{fontSize: 20, color: 'white'}}>Button</Text>
+      <Text style={{fontSize: 20, color: 'white'}}>Book Ride</Text>
     </Pressable>
   )
 }
