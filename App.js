@@ -6,7 +6,7 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import { Ionicons, Octicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 
@@ -14,6 +14,10 @@ import { StatusBar } from "expo-status-bar";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import BottomNav from "./components/BottomNav";
+import DetailCard from "./components/DetailCard";
+import DriverCard from "./components/DriverCard";
+import PaymentBar from "./components/PaymentBar";
+import Button from "./components/Button";
 
 export default function App() {
   const [open, setOpen] = useState(false);
@@ -40,6 +44,7 @@ export default function App() {
       icon: () => <Ionicons name="person-outline" size={18} color="#666" />,
     },
   ]);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* header */}
@@ -50,7 +55,6 @@ export default function App() {
         <Text style={styles.title}>Let's Go Places...</Text>
         {/* source and destination selection */}
         <Search />
-
         {/* search button and seat selection */}
         <View style={styles.findRideContainer}>
           <Pressable
@@ -81,43 +85,39 @@ export default function App() {
           </Pressable>
         </View>
 
-        <Pressable style={{flexDirection: 'row', borderWidth: 2, borderColor: '#d3d3d3', borderRadius: 10, padding: 10, margin: 20}}>
-          <View>
-            <Ionicons name="md-location" size={24} />
-            <Octicons name="arrow-both" size={24} style={{transform: [{rotate: '90deg'}], marginVertical: 10 }}/>
-            <Ionicons name="md-location" size={24} />
-          </View>
-          <View style={{ flex: 1, justifyContent: 'space-between'}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
+        {/* DriverCard */}
+        <DriverCard />
 
-              <View>
-                <Text style={{color: '#d3d3d3'}}>Pickup point</Text>
-                <Text style={{fontSize: 20}}>Banjul</Text>
-              </View>
+        {/* DetailCard */}
+        <DetailCard
+          source="Brikama"
+          destination="Farafenni"
+          date="21 Oct"
+          time="21:00"
+          price={5.99}
+        />
 
-              <View>
-                <View>
-                  <Text>17 July</Text>
-                </View>
-                <View>
-                  <Text>18:00</Text>
-                </View>
-              </View>
+        {/* payment bar */}
+        <PaymentBar />
 
-            </View>
+        {/* book ride button */}
+        <Button />
 
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
-              <View>
-                <Text style={{color: '#d3d3d3'}}>Drop point</Text>
-                <Text style={{fontSize: 20}}>Serrekunda</Text>
-              </View>
-              <View>
-                <Text>Price</Text>
-                <Text>$30.00</Text>
-              </View>
-            </View>
-          </View>
-        </Pressable>
+        {/* DetailCard */}
+        <DetailCard
+          source="Bakau"
+          destination="Gunjur"
+          date="21 Oct"
+          time="21:00"
+          price={5.99}
+        />
+        <DetailCard
+          source="Basse"
+          destination="Busumbala"
+          date="21 Oct"
+          time="21:00"
+          price={5.99}
+        />
       </ScrollView>
       {/* bottom navigation bar */}
       <BottomNav />
