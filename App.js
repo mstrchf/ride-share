@@ -1,152 +1,48 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Pressable,
-  ScrollView,
-} from "react-native";
+// modules imports
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 
-// component imports
-import Header from "./components/Header";
-import Search from "./components/Search";
-import BottomNav from "./components/BottomNav";
-import DetailCard from "./components/DetailCard";
-import DriverCard from "./components/DriverCard";
-import PaymentBar from "./components/PaymentBar";
-import Button from "./components/Button";
+// screens imports
+import HomeScreen from "./screens/HomeScreen";
+import AvailableRideScreen from "./screens/AvailableRideScreen";
+import RideDetailScreen from "./screens/RideDetailScreen";
+import { BlurView } from "expo-blur";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {
-      label: "One",
-      value: 1,
-      icon: () => <Ionicons name="person-outline" size={18} color="#666" />,
-    },
-    {
-      label: "Two",
-      value: 2,
-      icon: () => <Ionicons name="person-outline" size={18} color="#666" />,
-    },
-    {
-      label: "Three",
-      value: 3,
-      icon: () => <Ionicons name="person-outline" size={18} color="#666" />,
-    },
-    {
-      label: "Four",
-      value: 4,
-      icon: () => <Ionicons name="person-outline" size={18} color="#666" />,
-    },
-  ]);
-
   return (
-    <SafeAreaView style={styles.container}>
-      {/* header */}
-      <Header />
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
-      <ScrollView>
-        {/* hero text or title */}
-        <Text style={styles.title}>Let's Go Places...</Text>
-        {/* source and destination selection */}
-        <Search />
-        {/* search button and seat selection */}
-        <View style={styles.findRideContainer}>
-          <Pressable
-            style={{
-              flex: 1,
-              marginRight: 10,
-              borderRightWidth: 1,
-              borderColor: "#3D7A4E",
-              borderRadius: 0,
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 28, color: "#3d7a4e" }}>1</Text>
-            <Text style={{ fontSize: 22, color: "#3d7a4e" }}>Seat(s)</Text>
+            if (route.name === "Home") {
+              iconName = focused ? "search" : "search-outline";
+            } else if (route.name === "Publish") {
+              iconName = focused ? "add-circle" : "add-circle-outline";
+            } else {
+              iconName = focused ? "car" : "car-outline";
+            }
 
-            <Ionicons name="ios-chevron-down" size={24} color="#555" />
-          </Pressable>
+            return <Ionicons name={iconName} size={30} color={color} />;
+          },
 
-          <Pressable
-            style={styles.button}
-            onPress={function () {
-              alert("No rides found");
-            }}
-          >
-            <Text style={{ fontSize: 20, color: "white" }}>Find Ride</Text>
-          </Pressable>
-        </View>
-
-        {/* DriverCard */}
-        <DriverCard />
-
-        {/* DetailCard */}
-        <DetailCard
-          source="Brikama"
-          destination="Farafenni"
-          date="21 Oct"
-          time="21:00"
-          price={5.99}
-        />
-
-        {/* payment bar */}
-        <PaymentBar />
-
-        {/* book ride button */}
-        <Button />
-
-        {/* DetailCard */}
-        <DetailCard
-          source="Bakau"
-          destination="Gunjur"
-          date="21 Oct"
-          time="21:00"
-          price={5.99}
-        />
-        <DetailCard
-          source="Basse"
-          destination="Busumbala"
-          date="21 Oct"
-          time="21:00"
-          price={5.99}
-        />
-      </ScrollView>
-      {/* bottom navigation bar */}
-      <BottomNav />
-
-      <StatusBar style="auto" />
-    </SafeAreaView>
+          tabBarActiveTintColor: '#3d7a4e',
+          tabBarLabelStyle: {fontSize: 14},
+          tabBarBackground: () => <BlurView />
+        })}
+      >
+        <Tab.Screen name="Publish" component={RideDetailScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Ride" component={AvailableRideScreen} options={{tabBarBadge: 3, tabBarBadgeStyle: {
+          fontSize: 12
+        }}}/>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Platform.OS === "android" ? 25 : 0,
-  },
-  title: {
-    fontSize: 30,
-    color: "#555",
-    margin: 20,
-  },
-  findRideContainer: {
-    margin: 20,
-    flexDirection: "row",
-  },
-  button: {
-    flex: 1,
-    backgroundColor: "#3D7A4E",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    paddingVertical: 10,
-  },
-});

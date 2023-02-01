@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { Ionicons, Octicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 export default function DetailCard({source, destination, date, time, price}) {
   return (
@@ -15,17 +15,17 @@ export default function DetailCard({source, destination, date, time, price}) {
     >
       <View>
         <Ionicons name="md-location" size={24} color="#3d7a4e" />
-        <Octicons
-          name="arrow-both"
+        <FontAwesome
+          name="long-arrow-down"
           size={24}
-          style={{ transform: [{ rotate: "90deg" }], marginVertical: 15 }}
+          style={{  marginVertical: 15, marginLeft: 6, }}
         />
         <Ionicons name="md-location" size={24} color="#3d7a4e" />
       </View>
       <View style={{ flex: 1, justifyContent: "space-between", marginLeft: 5 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View>
-            <Text style={{ color: "#d3d3d3" }}>Pickup point</Text>
+            <Text style={{ color: "#999" }}>Pickup point</Text>
             <Text style={{ fontSize: 20, color: "#555" }}>{source}</Text>
           </View>
 
@@ -37,13 +37,19 @@ export default function DetailCard({source, destination, date, time, price}) {
               borderRadius: 5,
               justifyContent: "center",
               alignItems: "center",
+              height: 42
             }}
           >
             <View
               style={{
                 backgroundColor: "#3d7a4e",
-                paddingVertical: 10,
-                paddingHorizontal: 5,
+                paddingHorizontal: 10,
+                height: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderTopStartRadius: 2,
+                borderBottomStartRadius: 2,
+
               }}
             >
               <Text style={{ color: "white", fontSize: 16 }}>{date}</Text>
@@ -56,7 +62,7 @@ export default function DetailCard({source, destination, date, time, price}) {
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View>
-            <Text style={{ color: "#d3d3d3" }}>Drop point</Text>
+            <Text style={{ color: "#999" }}>Drop point</Text>
             <Text style={{ fontSize: 20, color: "#555" }}>{destination}</Text>
           </View>
           <View>
