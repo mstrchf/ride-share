@@ -24,7 +24,7 @@ export default function RideDetailScreen({navigation, route}) {
         {/* hero text or title */}
         <Text style={styles.title}>Ride Detail</Text>
 
-        <DriverCard navigation={navigation} driver={ride.driver} />
+        <DriverCard navigation={navigation} ride={ride} />
 
         <DetailCard
           source={ride.source}

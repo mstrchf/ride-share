@@ -7,12 +7,12 @@ export default [{
     price: 5.99,
     driver: {
         name: 'Lamin Ceesay',
-        address: 'Bakau Newtown, KMC',
+        address: 'Busumbal, WCR',
         license: 'BJL-1458F',
         car: 'Benz',
         phone: '7891234',
         rating: '4.5',
-        completed: 10
+        completed: 20
     }
   },
   {
@@ -24,9 +24,11 @@ export default [{
     price: 5.99,
     driver: {
         name: 'Paul Amissah',
-        address: 'Bakau Newtown, KMC',
+        address: 'Tallinding, KMC',
         license: 'BJL-1458F',
         car: 'Benz',
+        rating: '4.5',
+        completed: 10
     }
   },
   {
@@ -38,9 +40,11 @@ export default [{
     price: 5.99,
     driver: {
         name: 'Reginald Cole',
-        address: 'Bakau Newtown, KMC',
+        address: 'Kanifing Layout, KMC',
         license: 'BJL-1458F',
         car: 'Benz',
+        rating: '3.5',
+        completed: 25
     }
   },
   {
@@ -55,5 +59,7 @@ export default [{
         address: 'Bakau Newtown, KMC',
         license: 'BJL-1458F',
         car: 'Benz',
+        rating: '2.5',
+        completed: 100
     }
   },]

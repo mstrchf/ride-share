@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     color: "#555",
-    margin: 20,
+    marginHorizontal: 20,
+    marginTop: 10
   },
   findRideContainer: {
     margin: 20,

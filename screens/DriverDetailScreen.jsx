@@ -1,26 +1,49 @@
-import { StyleSheet, Text, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, Text, SafeAreaView, ScrollView, View } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 
 import data from "../data/data";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function DriverDetailScreen() {
+export default function DriverDetailScreen({ route }) {
+  const { id } = route.params;
 
-    
+  console.log(id);
+  const ride = data.find((item) => item.id === id);
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={{padding: 20}}>
+      <ScrollView style={{ padding: 20 }}>
         {/* hero text or title */}
-        <Text style={styles.title}>Driver Detail</Text>
 
-        {data.map(item => {
-            return (
-                
-                <Text key={item.driver.phone}>Name: {item.driver.name}</Text>
+        <View style={{alignItems: 'center', marginBottom: 25}}>
+          <View>
+            <Ionicons name="person" size={70} color='#3d7a4e' />
+          </View>
 
-                
-            )
-        })}
+          <View style={{alignItems: 'center'}}>
+            <Text style={{fontSize: 30, marginBottom: 5}}>{ride.driver.name}</Text>
+            <Text style={{fontSize: 15, color: '#555'}}>{ride.driver.address}</Text>
+          </View>
+        </View>
+
+        <View style={{flexDirection: 'row', borderWidth: 1, borderColor: '#3d7a4e', borderRadius: 10, alignItems: 'center', }}>
+
+          <View style={{alignItems: 'center', flex: 1, backgroundColor: '#3d7a4e', paddingVertical: 10, borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{fontSize: 30, color: 'white', marginRight: 5}} >{ride.driver.completed}</Text>
+              <Ionicons name="car" size={30} color='white'/>
+            </View>
+            <Text style={{color: 'white'}}>Completed Rides</Text>
+          </View>
+
+          <View style={{alignItems: 'center', flex: 1, paddingVertical: 10}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{fontSize: 30, color: '#3d7a4e', marginRight: 5}} >{ride.driver.rating}</Text>
+              <Ionicons name="star-half" size={25} color='#3d7a4e'/>
+            </View>
+            <Text style={{color: '#3d7a4e'}}>Average Rating</Text>
+          </View>
+        </View>
       </ScrollView>
       <StatusBar style="auto" />
     </SafeAreaView>
@@ -31,6 +54,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     color: "#555",
-
   },
 });
