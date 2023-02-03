@@ -5,36 +5,7 @@ import { StatusBar } from "expo-status-bar";
 // component imports
 import DetailCard from "../components/DetailCard";
 
-const data = [
-  {
-    source: "Brikama",
-    destination: "Bakau",
-    date: "17 Oct",
-    time: "18:00",
-    price: 5.99,
-  },
-  {
-    source: "Banjul",
-    destination: "Serrekunda",
-    date: "17 Oct",
-    time: "18:00",
-    price: 5.99,
-  },
-  {
-    source: "Farafenni",
-    destination: "Gunjur",
-    date: "17 Oct",
-    time: "18:00",
-    price: 5.99,
-  },
-  {
-    source: "Busumbala",
-    destination: "Lamin",
-    date: "17 Oct",
-    time: "18:00",
-    price: 5.99,
-  },
-];
+import data from "../data/data";
 
 export default function RideHistoryScreen({ navigation }) {
   return (
@@ -46,7 +17,7 @@ export default function RideHistoryScreen({ navigation }) {
           return (
             <DetailCard
               navigation={navigation}
-              key={index + 1}
+              key={item.id}
               source={item.source}
               destination={item.destination}
               date={item.date}
@@ -62,7 +33,7 @@ export default function RideHistoryScreen({ navigation }) {
           return (
             <DetailCard
               navigation={navigation}
-              key={index + 1}
+              key={item.id}
               source={item.source}
               destination={item.destination}
               date={item.date}

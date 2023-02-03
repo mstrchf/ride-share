@@ -3,7 +3,6 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 
 // screens imports
@@ -30,24 +29,25 @@ function HomeStackScreen() {
 
 const Tab = createBottomTabNavigator();
 
+const tabBar = ({ focused, color, route }) => {
+  let iconName;
+
+  if (route.name === "Home") {
+    iconName = focused ? "search" : "search-outline";
+  } else if (route.name === "Publish") {
+    iconName = focused ? "add-circle" : "add-circle-outline";
+  } else {
+    iconName = focused ? "car" : "car-outline";
+  }
+
+  return <Ionicons name={iconName} size={30} color={color} />;
+};
 function TabStackScreen() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color }) => {
-          let iconName;
-
-          if (route.name === "Home") {
-            iconName = focused ? "search" : "search-outline";
-          } else if (route.name === "Publish") {
-            iconName = focused ? "add-circle" : "add-circle-outline";
-          } else {
-            iconName = focused ? "car" : "car-outline";
-          }
-
-          return <Ionicons name={iconName} size={30} color={color} />;
-        },
+        tabBarIcon: <tabBar route={route}/>,
 
         tabBarActiveTintColor: "#3d7a4e",
         tabBarLabelStyle: { fontSize: 14 },
@@ -78,7 +78,7 @@ const RegisterStack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <RegisterStack.Navigator screenOptions={{headerShown: false}}>
+      <RegisterStack.Navigator screenOptions={{ headerShown: false }}>
         <RegisterStack.Screen name="Login" component={LoginScreen} />
         <RegisterStack.Screen name="Register" component={RegistrationScreen} />
         <RegisterStack.Screen name="Tab" component={TabStackScreen} />
