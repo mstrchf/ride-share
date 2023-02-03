@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function Button() {
+export default function Button({text, navigation, route}) {
   return (
     <Pressable
       style={{
@@ -14,9 +14,15 @@ export default function Button() {
         alignItems: "center",
       }}
 
-      onPress={() => alert("Can't book ride")}
+      onPress={() => {
+        if(navigation) {
+          if(route.name == 'Login') navigation.navigate('Tab')
+        } else {
+          alert("Can't book ride", )
+        }
+      }}
     >
-      <Text style={{ fontSize: 20, color: "white" }}>Book Ride</Text>
+      <Text style={{ fontSize: 20, color: "white" }}>{text}</Text>
     </Pressable>
   );
 }

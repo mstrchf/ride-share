@@ -38,12 +38,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
-    paddingVertical: 20,
+  
     alignItems: "center",
   },
   input: {
     marginLeft: 10,
+    paddingVertical: 20,
     fontSize: 20,
+    width: '100%'
   },
 
   switch: {
